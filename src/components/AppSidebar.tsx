@@ -29,15 +29,9 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
-      <SidebarHeader className="px-4 py-5">
-        <NavLink to="/" className="flex items-center gap-2.5">
-          <NataLogo size={38} className="shrink-0 shadow-glow rounded-xl" />
-          {!collapsed && (
-            <div className="flex flex-col">
-              <span className="font-display text-lg font-semibold leading-tight tracking-wide bg-gradient-nata bg-clip-text text-transparent">NATA</span>
-              <span className="text-[10px] text-muted-foreground leading-tight uppercase tracking-[0.14em]">Neural AI Task Assistant</span>
-            </div>
-          )}
+      <SidebarHeader className="px-3 py-4">
+        <NavLink to="/" className="flex items-center justify-center rounded-2xl bg-[hsl(255_50%_8%)] px-3 py-3 shadow-soft">
+          <NataLogo size={collapsed ? 32 : 56} className="max-w-full" />
         </NavLink>
       </SidebarHeader>
 

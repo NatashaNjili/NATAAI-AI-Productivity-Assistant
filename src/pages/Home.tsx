@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, FileText, CalendarCheck, Sparkles, MessageCircle, ArrowRight, Sparkle } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import nataBrand from "@/assets/nata-brand.png";
 
 const tools = [
   { url: "/email", icon: Mail, title: "Smart Email Generator", desc: "Polished emails matched to your tone and audience.", color: "from-rose-200/60 to-orange-200/60" },
@@ -13,28 +14,24 @@ const tools = [
 export default function Home() {
   return (
     <div className="space-y-10">
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-soft border border-border/60 px-6 sm:px-10 py-12 sm:py-16 shadow-card">
-        <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gradient-primary opacity-20 blur-3xl" />
-        <div className="absolute -bottom-24 -left-10 h-56 w-56 rounded-full bg-coral/30 blur-3xl" />
-        <div className="relative max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-background/70 backdrop-blur px-3 py-1 text-xs font-medium border border-border/60">
-            <Sparkle className="h-3 w-3 text-primary" /> <span className="bg-gradient-nata bg-clip-text text-transparent font-semibold tracking-wide">NATA</span> · Neural AI Task Assistant
-          </div>
-          <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight text-foreground">
-            Work <span className="italic bg-gradient-nata bg-clip-text text-transparent">Smarter.</span>
-            <br />
-            Create <span className="italic bg-gradient-nata bg-clip-text text-transparent">More.</span>
-            <br />
-            Achieve <span className="italic bg-gradient-nata bg-clip-text text-transparent">Beyond.</span>
-          </h1>
-          <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl">
+      <section className="relative overflow-hidden rounded-3xl border border-border/60 px-6 sm:px-10 py-12 sm:py-14 shadow-glow bg-[hsl(255_50%_8%)]">
+        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[hsl(265_85%_62%)]/40 blur-3xl" />
+        <div className="absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-[hsl(188_90%_55%)]/30 blur-3xl" />
+        <div className="absolute top-1/3 left-1/2 h-56 w-56 rounded-full bg-[hsl(325_85%_65%)]/25 blur-3xl" />
+        <div className="relative flex flex-col items-center text-center max-w-3xl mx-auto">
+          <img
+            src={nataBrand}
+            alt="NATA — Neural AI Task Assistant"
+            className="w-full max-w-lg sm:max-w-xl drop-shadow-[0_8px_40px_rgba(168,85,247,0.45)]"
+          />
+          <p className="mt-8 text-base sm:text-lg text-white/75 leading-relaxed max-w-xl">
             NATA automates the everyday — emails, meeting notes, planning, research — so you can spend your energy on the work that truly matters.
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link to="/chat" className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-gradient-primary text-primary-foreground font-medium shadow-soft hover:shadow-glow transition">
+          <div className="mt-7 flex flex-wrap gap-3 justify-center">
+            <Link to="/chat" className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-gradient-nata text-white font-medium shadow-soft hover:shadow-glow transition">
               Start a conversation <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/email" className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-background border border-border font-medium hover:bg-secondary transition">
+            <Link to="/email" className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-white/10 border border-white/20 text-white font-medium hover:bg-white/15 transition backdrop-blur">
               Draft an email
             </Link>
           </div>
