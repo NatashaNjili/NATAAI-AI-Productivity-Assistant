@@ -8,7 +8,7 @@ import { streamAI, ChatMsg } from "@/lib/ai";
 
 export default function Chat() {
   const [messages, setMessages] = useState<ChatMsg[]>([
-    { role: "assistant", content: "Hi! I'm Lumen — your AI productivity assistant. ✨\n\nI can help you draft emails, summarize meetings, plan your day, or research a topic. What's on your plate today?" },
+    { role: "assistant", content: "Hi! I'm NATA — your Neural AI Task Assistant. ✨\n\nI can help you draft emails, summarize meetings, plan your day, or research a topic. What's on your plate today?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);

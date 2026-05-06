@@ -17,15 +17,15 @@ export default function Home() {
         <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gradient-primary opacity-20 blur-3xl" />
         <div className="absolute -bottom-24 -left-10 h-56 w-56 rounded-full bg-coral/30 blur-3xl" />
         <div className="relative max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-background/70 backdrop-blur px-3 py-1 text-xs font-medium text-rose border border-border/60">
-            <Sparkle className="h-3 w-3" /> Your gentle, intelligent workday companion
+          <div className="inline-flex items-center gap-2 rounded-full bg-background/70 backdrop-blur px-3 py-1 text-xs font-medium border border-border/60">
+            <Sparkle className="h-3 w-3 text-primary" /> <span className="bg-gradient-nata bg-clip-text text-transparent font-semibold tracking-wide">NATA</span> · Neural AI Task Assistant
           </div>
           <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] text-foreground">
-            Do less <span className="italic text-rose">busywork.</span><br />
-            Make more <span className="bg-gradient-primary bg-clip-text text-transparent">moments.</span>
+            Work <span className="italic bg-gradient-nata bg-clip-text text-transparent">Smarter.</span><br />
+            Create More. <span className="bg-gradient-primary bg-clip-text text-transparent">Achieve Beyond.</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl">
-            Lumen automates the everyday — emails, meeting notes, planning, research — so you can spend your energy on the work that matters.
+            NATA automates the everyday — emails, meeting notes, planning, research — so you can spend your energy on the work that matters.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link to="/chat" className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-gradient-primary text-primary-foreground font-medium shadow-soft hover:shadow-glow transition">
