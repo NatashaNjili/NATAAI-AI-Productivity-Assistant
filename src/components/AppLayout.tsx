@@ -29,6 +29,17 @@ export default function AppLayout() {
           <main className="flex-1 px-4 sm:px-6 lg:px-10 py-6 sm:py-8 max-w-[1400px] w-full mx-auto">
             <Outlet />
           </main>
+          <footer className="border-t border-border/60 bg-background/60 backdrop-blur px-4 sm:px-6 lg:px-10 py-5">
+            <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-muted-foreground">
+              <p className="italic font-display text-sm bg-gradient-nata bg-clip-text text-transparent">
+                Work Smarter. Create More. Achieve Beyond.
+              </p>
+              <div className="text-right sm:text-right">
+                <p>© 2026 Natasha Njili. All Rights Reserved.</p>
+                <p className="italic">Built with AI-powered productivity in mind.</p>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
     </SidebarProvider>
