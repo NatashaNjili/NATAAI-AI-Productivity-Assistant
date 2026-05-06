@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, FileText, CalendarCheck, Sparkles, MessageCircle, ArrowRight, Sparkle } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import nataBrand from "@/assets/nata-brand.png";
 
 const tools = [
   { url: "/email", icon: Mail, title: "Smart Email Generator", desc: "Polished emails matched to your tone and audience.", color: "from-rose-200/60 to-orange-200/60" },
