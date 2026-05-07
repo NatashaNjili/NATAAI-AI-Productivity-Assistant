@@ -63,10 +63,7 @@ NATA was built with ethics in mind from day one:
 - 👤 **Human-in-the-loop** — NATA assists, humans decide
 
 3. **Open in browser**
-   ```bash
-   open index.html
-   ```
-   Or simply drag `index.html` into your browser — no server needed.
+ [NATA AI Productivity Assistant](https://nataai.lovable.app/)  
 
 ## 🌍 Industry Relevance
 
