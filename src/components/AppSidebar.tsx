@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Mail, FileText, CalendarCheck, Sparkles, MessageCircle } from "lucide-react";
+import { Mail, FileText, CalendarCheck, Sparkles, MessageCircle, Image, Code2 } from "lucide-react";
 import { NataLogo } from "./NataLogo";
 import {
   Sidebar,
@@ -19,6 +19,8 @@ const items = [
   { title: "Notes Summarizer", url: "/notes", icon: FileText },
   { title: "Task Planner", url: "/planner", icon: CalendarCheck },
   { title: "Research Assistant", url: "/research", icon: Sparkles },
+  { title: "Image Studio", url: "/image", icon: Image },
+  { title: "Code Generator", url: "/code", icon: Code2 },
   { title: "Chat Assistant", url: "/chat", icon: MessageCircle },
 ];
 

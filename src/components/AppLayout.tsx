@@ -7,6 +7,8 @@ const titles: Record<string, { title: string; subtitle: string }> = {
   "/notes": { title: "Meeting Notes Summarizer", subtitle: "Turn long notes into clear action items" },
   "/planner": { title: "AI Task Planner", subtitle: "Prioritize and time-block your day" },
   "/research": { title: "Research Assistant", subtitle: "Distill any topic into insights" },
+  "/image": { title: "Image Studio", subtitle: "Generate on-brand visuals from a description" },
+  "/code": { title: "Code Generator", subtitle: "Write, explain, debug and optimize code" },
   "/chat": { title: "Chat Assistant", subtitle: "Your all-purpose productivity companion" },
 };
 

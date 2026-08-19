@@ -6,7 +6,7 @@ const KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 export type ChatMsg = { role: "user" | "assistant"; content: string };
 
 export async function streamAI(opts: {
-  mode: "email" | "notes" | "planner" | "research" | "chat";
+  mode: "email" | "notes" | "planner" | "research" | "chat" | "code";
   input?: string;
   messages?: ChatMsg[];
   onDelta: (chunk: string) => void;

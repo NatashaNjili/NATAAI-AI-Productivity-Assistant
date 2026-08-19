@@ -9,6 +9,8 @@ import EmailGenerator from "./pages/EmailGenerator";
 import NotesSummarizer from "./pages/NotesSummarizer";
 import Planner from "./pages/Planner";
 import Research from "./pages/Research";
+import ImageStudio from "./pages/ImageStudio";
+import CodeGenerator from "./pages/CodeGenerator";
 import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +29,8 @@ const App = () => (
             <Route path="/notes" element={<NotesSummarizer />} />
             <Route path="/planner" element={<Planner />} />
             <Route path="/research" element={<Research />} />
+            <Route path="/image" element={<ImageStudio />} />
+            <Route path="/code" element={<CodeGenerator />} />
             <Route path="/chat" element={<Chat />} />
           </Route>
           <Route path="*" element={<NotFound />} />
