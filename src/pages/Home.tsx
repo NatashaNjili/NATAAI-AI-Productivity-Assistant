@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, FileText, CalendarCheck, Sparkles, MessageCircle, ArrowRight, Sparkle } from "lucide-react";
+import { Mail, FileText, CalendarCheck, Sparkles, MessageCircle, ArrowRight, Sparkle, Image, Code2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import nataBrand from "@/assets/nata-brand.png";
 
@@ -8,6 +8,8 @@ const tools = [
   { url: "/notes", icon: FileText, title: "Meeting Notes Summarizer", desc: "Turn long transcripts into action items and decisions.", color: "from-pink-200/60 to-rose-200/60" },
   { url: "/planner", icon: CalendarCheck, title: "AI Task Planner", desc: "Prioritize tasks and time-block your day or week.", color: "from-orange-200/60 to-amber-200/60" },
   { url: "/research", icon: Sparkles, title: "Research Assistant", desc: "Distill any topic into clear, useful insights.", color: "from-rose-200/60 to-pink-200/60" },
+  { url: "/image", icon: Image, title: "Image Studio", desc: "Generate on-brand visuals from a simple description.", color: "from-violet-200/60 to-pink-200/60" },
+  { url: "/code", icon: Code2, title: "Code Generator", desc: "Write, explain, debug and optimize code fast.", color: "from-cyan-200/60 to-violet-200/60" },
   { url: "/chat", icon: MessageCircle, title: "Chat Assistant", desc: "An always-on partner for any productivity task.", color: "from-pink-200/60 to-orange-200/60" },
 ];
 
