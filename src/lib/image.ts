@@ -21,8 +21,8 @@ function handleError(status: number) {
   else toast.error("Image generation failed. Please try again.");
 }
 
-export async function streamImage(prompt: string, style: string, onFrame: Frame) {
-  const resp = await post({ prompt, style, stream: true });
+export async function streamImage(prompt: string, style: string, onFrame: Frame, baseImage?: string) {
+  const resp = await post({ prompt, style, baseImage, stream: true });
   if (!resp.ok || !resp.body) {
     handleError(resp.status);
     throw new Error(`HTTP ${resp.status}`);

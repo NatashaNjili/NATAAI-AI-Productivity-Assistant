@@ -7,7 +7,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { prompt, style, stream = true } = await req.json();
+    const { prompt, style, baseImage, stream = true } = await req.json();
     if (!prompt || typeof prompt !== "string") {
       return new Response(JSON.stringify({ error: "Prompt is required" }), {
         status: 400,
@@ -20,9 +20,16 @@ Deno.serve(async (req) => {
 
     const fullPrompt = style && style !== "none" ? `${prompt}. Style: ${style}.` : prompt;
 
+    const content = baseImage && typeof baseImage === "string"
+      ? [
+          { type: "text", text: fullPrompt },
+          { type: "image_url", image_url: { url: baseImage } },
+        ]
+      : fullPrompt;
+
     const body: Record<string, unknown> = {
       model: "google/gemini-3-pro-image",
-      messages: [{ role: "user", content: fullPrompt }],
+      messages: [{ role: "user", content }],
       modalities: ["image", "text"],
     };
     if (stream) body.stream = true;
