@@ -73,7 +73,7 @@ export async function streamImage(prompt: string, style: string, onFrame: Frame,
   if (streamError) { toast.error(streamError); throw new Error(streamError); }
 
   if (!sawAny) {
-    const replay = await post({ prompt, style, stream: false });
+    const replay = await post({ prompt, style, baseImage, stream: false });
     if (!replay.ok) { handleError(replay.status); throw new Error(`HTTP ${replay.status}`); }
     const json = await replay.json();
     const b64 = json?.data?.[0]?.b64_json;
