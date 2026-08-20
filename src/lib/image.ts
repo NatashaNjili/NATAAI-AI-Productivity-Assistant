@@ -21,8 +21,8 @@ function handleError(status: number) {
   else toast.error("Image generation failed. Please try again.");
 }
 
-export async function streamImage(prompt: string, style: string, onFrame: Frame) {
-  const resp = await post({ prompt, style, stream: true });
+export async function streamImage(prompt: string, style: string, onFrame: Frame, baseImage?: string) {
+  const resp = await post({ prompt, style, baseImage, stream: true });
   if (!resp.ok || !resp.body) {
     handleError(resp.status);
     throw new Error(`HTTP ${resp.status}`);
@@ -73,7 +73,7 @@ export async function streamImage(prompt: string, style: string, onFrame: Frame)
   if (streamError) { toast.error(streamError); throw new Error(streamError); }
 
   if (!sawAny) {
-    const replay = await post({ prompt, style, stream: false });
+    const replay = await post({ prompt, style, baseImage, stream: false });
     if (!replay.ok) { handleError(replay.status); throw new Error(`HTTP ${replay.status}`); }
     const json = await replay.json();
     const b64 = json?.data?.[0]?.b64_json;
