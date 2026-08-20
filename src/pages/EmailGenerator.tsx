@@ -68,7 +68,9 @@ export default function EmailGenerator() {
           {loading ? "Crafting…" : "Generate Email"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={generate} filename="email.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="email.md" emptyHint="Fill the form and click Generate Email." />
+
     </div>
   );
 }
