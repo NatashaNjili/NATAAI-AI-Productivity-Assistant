@@ -6,25 +6,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sparkles, Loader2 } from "lucide-react";
-import { OutputCard } from "@/components/OutputCard";
-import { streamAI } from "@/lib/ai";
+import { ThreadPanel } from "@/components/ThreadPanel";
+import { useAIThread } from "@/hooks/useAIThread";
 
 export default function EmailGenerator() {
   const [purpose, setPurpose] = useState("");
   const [recipient, setRecipient] = useState("client");
   const [tone, setTone] = useState("formal");
   const [points, setPoints] = useState("");
-  const [output, setOutput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { turns, loading, send, regenerate, reset } = useAIThread("email");
 
-  const generate = async () => {
+  const generate = () => {
     if (!purpose.trim()) return;
-    setLoading(true); setOutput("");
-    const input = `Purpose: ${purpose}\nRecipient: ${recipient}\nTone: ${tone}\nKey points:\n${points}`;
-    try {
-      await streamAI({ mode: "email", input, onDelta: (c) => setOutput((p) => p + c) });
-    } finally { setLoading(false); }
+    send(`Purpose: ${purpose}\nRecipient: ${recipient}\nTone: ${tone}\nKey points:\n${points}`);
   };
+
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -72,7 +68,9 @@ export default function EmailGenerator() {
           {loading ? "Crafting…" : "Generate Email"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={generate} filename="email.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="email.md" emptyHint="Fill the form and click Generate Email." />
+
     </div>
   );
 }
