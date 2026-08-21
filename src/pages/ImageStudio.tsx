@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ImageIcon, Loader2, Download, Send, Wand2, RefreshCw } from "lucide-react";
 import { streamImage } from "@/lib/image";
+import { loadThread, saveThread } from "@/lib/threadStore";
 
 const STYLES = [
   { value: "none", label: "No preset" },
@@ -26,7 +27,7 @@ type Turn = {
 };
 
 export default function ImageStudio() {
-  const [turns, setTurns] = useState<Turn[]>([]);
+  const [turns, setTurns] = useState<Turn[]>(() => loadThread<Turn[]>("image", [], false));
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState(STYLES[1].value);
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,11 @@ export default function ImageStudio() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [turns, loading]);
+
+  // Keep the image thread alive when navigating between pages (session memory).
+  useEffect(() => {
+    saveThread("image", turns, false);
+  }, [turns]);
 
   const lastFinal = [...turns].reverse().find((t) => t.isFinal && !t.failed);
 

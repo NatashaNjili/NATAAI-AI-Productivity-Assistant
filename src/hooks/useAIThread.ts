@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { streamAI, ChatMsg } from "@/lib/ai";
+import { clearThread, loadThread, saveThread } from "@/lib/threadStore";
 
 export type Turn = { id: number; prompt: string; output: string };
 
 export function useAIThread(mode: "email" | "notes" | "planner" | "research" | "code") {
-  const [turns, setTurns] = useState<Turn[]>([]);
+  const [turns, setTurns] = useState<Turn[]>(() => loadThread<Turn[]>(mode, []));
   const [loading, setLoading] = useState(false);
+
+  // Persist the thread so navigating between pages keeps the history.
+  useEffect(() => {
+    saveThread(mode, turns);
+  }, [mode, turns]);
 
   const stream = async (prompt: string, history: Turn[], id: number) => {
     const messages: ChatMsg[] = [];
@@ -50,7 +56,10 @@ export function useAIThread(mode: "email" | "notes" | "planner" | "research" | "
     await stream(turn.prompt, turns.slice(0, idx), id);
   };
 
-  const reset = () => setTurns([]);
+  const reset = () => {
+    clearThread(mode);
+    setTurns([]);
+  };
 
   return { turns, loading, send, regenerate, reset };
 }

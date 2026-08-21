@@ -5,11 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Sparkle, Loader2 } from "lucide-react";
 import { streamAI, ChatMsg } from "@/lib/ai";
+import { loadThread, saveThread } from "@/lib/threadStore";
+
+const GREETING: ChatMsg = {
+  role: "assistant",
+  content: "Hi! I'm NATA — your Neural AI Task Assistant. ✨\n\nI can help you draft emails, summarize meetings, plan your day, or research a topic. What's on your plate today?",
+};
 
 export default function Chat() {
-  const [messages, setMessages] = useState<ChatMsg[]>([
-    { role: "assistant", content: "Hi! I'm NATA — your Neural AI Task Assistant. ✨\n\nI can help you draft emails, summarize meetings, plan your day, or research a topic. What's on your plate today?" },
-  ]);
+  const [messages, setMessages] = useState<ChatMsg[]>(() => loadThread<ChatMsg[]>("chat", [GREETING]));
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -17,6 +21,11 @@ export default function Chat() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading]);
+
+  // Persist the conversation so leaving the page doesn't wipe it.
+  useEffect(() => {
+    saveThread("chat", messages);
+  }, [messages]);
 
   const send = async () => {
     const text = input.trim();
