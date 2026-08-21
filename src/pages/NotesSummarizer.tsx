@@ -32,7 +32,10 @@ export default function NotesSummarizer() {
           {loading ? "Summarizing…" : "Summarize Notes"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={run} filename="meeting-summary.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="meeting-summary.md" emptyHint="Paste your notes and click Summarize Notes."
+        placeholder="Refine it — e.g. add owners, shorten, list risks…" />
+
     </div>
   );
 }
