@@ -64,7 +64,10 @@ export default function CodeGenerator() {
           {loading ? "Writing code…" : "Generate Code"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={generate} filename="code.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="code.md" emptyHint="Describe the task and click Generate Code."
+        placeholder="Refine it — e.g. add error handling, convert to async…" />
+
     </div>
   );
 }

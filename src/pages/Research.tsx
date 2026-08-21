@@ -32,7 +32,10 @@ export default function Research() {
           {loading ? "Researching…" : "Research Topic"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={run} filename="research-brief.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="research-brief.md" emptyHint="Enter a topic and click Research Topic."
+        placeholder="Refine it — e.g. go deeper on risks, add examples…" />
+
     </div>
   );
 }
