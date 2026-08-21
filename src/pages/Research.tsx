@@ -4,21 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Sparkles, Loader2 } from "lucide-react";
-import { OutputCard } from "@/components/OutputCard";
-import { streamAI } from "@/lib/ai";
+import { ThreadPanel } from "@/components/ThreadPanel";
+import { useAIThread } from "@/hooks/useAIThread";
 
 export default function Research() {
   const [topic, setTopic] = useState("");
-  const [output, setOutput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { turns, loading, send, regenerate, reset } = useAIThread("research");
 
-  const run = async () => {
+  const run = () => {
     if (!topic.trim()) return;
-    setLoading(true); setOutput("");
-    try {
-      await streamAI({ mode: "research", input: topic, onDelta: (c) => setOutput((p) => p + c) });
-    } finally { setLoading(false); }
+    send(topic);
   };
+
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">

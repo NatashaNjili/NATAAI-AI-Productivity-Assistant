@@ -46,7 +46,10 @@ export default function Planner() {
           {loading ? "Planning…" : "Build My Plan"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={run} filename="plan.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="plan.md" emptyHint="Add your tasks and click Build My Plan."
+        placeholder="Refine it — e.g. free up Friday, add focus blocks…" />
+
     </div>
   );
 }

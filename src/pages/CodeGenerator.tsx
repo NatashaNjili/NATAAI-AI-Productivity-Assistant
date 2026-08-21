@@ -5,8 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Code2, Loader2 } from "lucide-react";
-import { OutputCard } from "@/components/OutputCard";
-import { streamAI } from "@/lib/ai";
+import { ThreadPanel } from "@/components/ThreadPanel";
+import { useAIThread } from "@/hooks/useAIThread";
 
 const LANGUAGES = ["TypeScript", "JavaScript", "Python", "SQL", "Java", "C#", "Go", "PHP", "Bash", "HTML/CSS"];
 const TASKS = [
@@ -21,17 +21,13 @@ export default function CodeGenerator() {
   const [task, setTask] = useState("write");
   const [language, setLanguage] = useState("TypeScript");
   const [details, setDetails] = useState("");
-  const [output, setOutput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { turns, loading, send, regenerate, reset } = useAIThread("code");
 
-  const generate = async () => {
-    if (!details.trim() || loading) return;
-    setLoading(true); setOutput("");
-    const input = `Task: ${TASKS.find((t) => t.value === task)?.label}\nLanguage: ${language}\n\nDetails / code:\n${details}`;
-    try {
-      await streamAI({ mode: "code", input, onDelta: (c) => setOutput((p) => p + c) });
-    } finally { setLoading(false); }
+  const generate = () => {
+    if (!details.trim()) return;
+    send(`Task: ${TASKS.find((t) => t.value === task)?.label}\nLanguage: ${language}\n\nDetails / code:\n${details}`);
   };
+
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
