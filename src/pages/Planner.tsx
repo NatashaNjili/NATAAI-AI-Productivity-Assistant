@@ -5,23 +5,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Sparkles, Loader2 } from "lucide-react";
-import { OutputCard } from "@/components/OutputCard";
-import { streamAI } from "@/lib/ai";
+import { ThreadPanel } from "@/components/ThreadPanel";
+import { useAIThread } from "@/hooks/useAIThread";
 
 export default function Planner() {
   const [tasks, setTasks] = useState("");
   const [horizon, setHorizon] = useState("daily");
-  const [output, setOutput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { turns, loading, send, regenerate, reset } = useAIThread("planner");
 
-  const run = async () => {
+  const run = () => {
     if (!tasks.trim()) return;
-    setLoading(true); setOutput("");
-    const input = `Plan horizon: ${horizon}\nTasks (with optional deadlines):\n${tasks}`;
-    try {
-      await streamAI({ mode: "planner", input, onDelta: (c) => setOutput((p) => p + c) });
-    } finally { setLoading(false); }
+    send(`Plan horizon: ${horizon}\nTasks (with optional deadlines):\n${tasks}`);
   };
+
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -50,7 +46,10 @@ export default function Planner() {
           {loading ? "Planning…" : "Build My Plan"}
         </Button>
       </Card>
-      <OutputCard output={output} loading={loading} onRegenerate={run} filename="plan.md" />
+      <ThreadPanel turns={turns} loading={loading} onSend={send} onRegenerate={regenerate} onReset={reset}
+        filename="plan.md" emptyHint="Add your tasks and click Build My Plan."
+        placeholder="Refine it — e.g. free up Friday, add focus blocks…" />
+
     </div>
   );
 }
